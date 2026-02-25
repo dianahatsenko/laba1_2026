@@ -1,0 +1,44 @@
+using System;
+using System.Text;
+
+public class PalindromeChecker
+{
+    public bool IsPalindrome(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return false;
+
+        StringBuilder poli = new StringBuilder();
+
+        foreach (char c in input)
+        {
+            if (char.IsLetterOrDigit(c))
+            {
+                poli.Append(char.ToLower(c));
+            }
+        }
+
+        string result = poli.ToString();
+
+        for (int i = 0; i < result.Length / 2; i++)
+        {
+            if (result[i] != result[result.Length - 1 - i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Enter a string:");
+        string input = Console.ReadLine();
+
+        PalindromeChecker checker = new PalindromeChecker();
+        bool result = checker.IsPalindrome(input);
+
+        Console.WriteLine(result);
+    }
+}
